@@ -4,6 +4,6 @@ answ_er = int(input("say a number between 0 and 10000"))
 if num_ber == answ_er:
     print("good job u win")
 else: 
-    print("you fucking failure it was") 
+    print("you actual failure it was") 
 print(num_ber)
 print("come back and try again")
