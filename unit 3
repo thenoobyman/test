@@ -1,0 +1,18 @@
+
+play_again="yes"
+while play_again=="yes":
+    from random import randint 
+    low = int(input("enter a number"))
+    high = int (input("enter a biger number"))
+    if low > h_igh:
+        low, h_igh = h_igh, low
+    num_ber = randint (low , h_igh)
+    answ_er = int(input("guess a number inbetween the numbers u chose "))
+    if num_ber == answ_er:
+        print("good job u win")
+        play_again="no"
+    else: 
+        print("you failure it was") 
+        print(num_ber)
+        print("come back and try again")
+        play_again=str(input("do u want to play again?"))
