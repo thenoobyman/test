@@ -1,0 +1,53 @@
+from random import randint
+
+
+q_u = [
+    ["true/false: earth is round.", ["true", "True", "yes", "Yes"], "no hint"],
+    ["true/false: cif is good.", ["true", "True", "Yes", "yes", "false", "False"], "no hint"],
+    ["true/false: the leopard 2a4m is a canadian tank.", ["true", "True"], "no hint"]
+]
+
+Q_c = 3  
+
+hp = 3   
+doneFlag = [False, False, False]  
+qu_d = 0  
+
+
+def checkanswer(q_n):
+    global hp
+    answer = input(q_u[q_n][0] + " ")
+
+    if answer in q_u[q_n][1]:
+        hp += 3
+        print(f"Correct! Your HP is now {hp}")
+        return True
+    else:
+        hp -= 3
+        print(f"Wrong! Your HP is now {hp}")
+        return False
+
+
+
+while qu_d < Q_c:
+
+    
+    if hp <= 0:
+        print("You lost!")
+        break
+
+    
+    q_n = randint(0, Q_c - 1)
+    while doneFlag[q_n]:
+        q_n = randint(0, Q_c - 1)
+
+    doneFlag[q_n] = True
+    qu_d += 1
+
+   
+    if not checkanswer(q_n):
+
+       
+        if hp <= 0:
+            print("You lost!")
+            
