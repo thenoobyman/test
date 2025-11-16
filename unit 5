@@ -35,7 +35,7 @@ while qu_d < Q_c:
 
     
     if hp <= 0:
-        print("You lost! Your HP dropped to 0.")
+        print("You lost! Your HP has gone to 0.")
         break
     q_n = randint(0, Q_c - 1)
     while doneFlag[q_n]:
@@ -45,7 +45,7 @@ while qu_d < Q_c:
     qu_d += 1
     correct = checkanswer(q_n)
     if hp <= 0:
-        print("You lost! Your HP dropped to 0.")
+        print("You lost! Your HP has gone to 0.")
         break
 
 if qu_d == Q_c and hp > 0:
