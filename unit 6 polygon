@@ -1,0 +1,21 @@
+import turtle
+wi_dh = int(input("enter the number of sides for how wide your polygon will be(10 or more): "))
+while wi_dh < 10:
+    wi_dh = int(input("I SAID (10 OR MORE!!!): "))
+s_h = int(input("enter the length of each side (60 or more): "))
+while s_h < 60:
+    s_h = int(input("I said (60 or more!!!): "))
+turtle.speed(0.00009)
+turtle.shape("turtle")
+turtle.shapesize(0.1)
+turtle.hideturtle()
+turtle.bgcolor("red")
+turtle.pencolor("black")
+for i in range(wi_dh):
+    turtle.forward(s_h)
+    turtle.right(180-((540/wi_dh)))
+turtle.penup()
+turtle.goto(0, 0)
+turtle.pendown()
+
+turtle.done()
