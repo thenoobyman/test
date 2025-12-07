@@ -1,0 +1,6 @@
+import pygame
+pygame.init()
+clock = pygame.time.Clock()
+while True:
+    clock.tick(80)
+ pygame.display.update()
