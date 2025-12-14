@@ -1,0 +1,28 @@
+
+import pygame 
+pygame.init() 
+green = (191, 255, 0)
+white = (255, 255, 255)
+width = 1000
+height = 1000
+box_size = 80
+box_x = 0
+box_y = 0
+box_x2 = width - box_size
+box_y2 = height - box_size
+rect1 = pygame.Rect(box_x, box_y, 80, 80)
+screen = pygame.display.set_mode((width, height))
+clock = pygame.time.Clock()
+while True:
+    clock.tick(240)
+    for event in pygame.event.get(): 
+        if event.type == pygame.QUIT:
+            exit()
+    if box_x2 < 0:
+        box_x2 = 0
+    box_x += 5
+    box_x2 -= 5
+    rect1 = pygame.Rect(box_x, box_y, 80, 80)  
+    pygame.draw.rect(screen, green, rect1)
+    pygame.display.update()
+    screen.fill(white)
