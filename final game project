@@ -1,0 +1,117 @@
+import pygame
+
+
+pygame.init()
+
+
+print("welcome to Colour builder")
+print("the keybinds for colours are")
+c_list = ["1 for white","2 for red","3 for blue","4 for green","5 for grey","6 for black","7 for peach"]
+for item in c_list:
+    print(item)
+print("left click to place, right click to delete")
+print("hold left click to drag place or right click to drag delete")
+print("have fun and take breaks as your wrists will hurt :)")
+
+
+WIDTH, HEIGHT = 1000, 400
+BLOCK_SIZE = 10
+
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Colour builder.client.exe")
+
+
+clock = pygame.time.Clock()
+
+
+BG_COLOR = (211, 211, 211)
+
+
+BLOCK_COLORS = {
+    1: (255, 255, 255),
+    2: (200, 100, 100),
+    3: (100, 100, 200),
+    4: (100, 200, 100),
+    5: (169, 169, 169),
+    6: (0, 0, 0),
+    7: (255, 218, 185),
+}
+
+
+current_color = 1
+blocks = []
+placing = False
+deleting = False
+
+
+running = True
+while running:
+    clock.tick(100)
+    screen.fill(BG_COLOR)
+
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_1: current_color = 1
+            if event.key == pygame.K_2: current_color = 2
+            if event.key == pygame.K_3: current_color = 3
+            if event.key == pygame.K_4: current_color = 4
+            if event.key == pygame.K_5: current_color = 5
+            if event.key == pygame.K_6: current_color = 6
+            if event.key == pygame.K_7: current_color = 7
+
+
+       
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                placing = True
+            if event.button == 3:  
+                deleting = True
+
+
+       
+        if event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                placing = False
+            if event.button == 3:
+                deleting = False
+
+
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+
+   
+    if placing:
+        rect = pygame.Rect(
+            mouse_x - BLOCK_SIZE // 2,
+            mouse_y - BLOCK_SIZE // 2,
+            BLOCK_SIZE,
+            BLOCK_SIZE
+        )
+        blocks.append((rect, BLOCK_COLORS[current_color]))
+
+
+    # Drag deletion
+    if deleting:
+        for b in reversed(blocks):
+            if b[0].collidepoint(mouse_x, mouse_y):
+                blocks.remove(b)
+                break
+
+
+    # Draw all blocks
+    for rect, color in blocks:
+        pygame.draw.rect(screen, color, rect)
+
+
+    pygame.display.flip()
+
+
+pygame.quit()
+
+
+
+
